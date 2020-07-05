@@ -1,9 +1,10 @@
 module.exports = {
-  HOST: "localhost",
+  HOST: "bmn-web.jinr.ru",
   USER: "calendar",
   PASSWORD: "calendar",
-  DB: "calendardb",
-  dialect: "postgresql",
+  DB: "calendartest",
+  dialect: "postgres",
+  port: "8443",
   pool: {
     max: 5,
     min: 0,

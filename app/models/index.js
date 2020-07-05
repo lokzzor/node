@@ -8,7 +8,8 @@ const sequelize = new Sequelize(
   {
     host: config.HOST,
     dialect: config.dialect,
-    operatorsAliases: false,
+    port: config.port,
+    operatorsAliases: 1,
 
     pool: {
       max: config.pool.max,
@@ -24,20 +25,9 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.user = require("../models/user.model.js")(sequelize, Sequelize);
-db.role = require("../models/role.model.js")(sequelize, Sequelize);
+db.secret="secretcode user";
 
-db.role.belongsToMany(db.user, {
-  through: "user_roles",
-  foreignKey: "roleId",
-  otherKey: "userId"
-});
-db.user.belongsToMany(db.role, {
-  through: "user_roles",
-  foreignKey: "userId",
-  otherKey: "roleId"
-});
+db.user = require('../models/user.js')(sequelize, Sequelize);
 
-db.ROLES = ["user", "admin", "moderator"];
 
 module.exports = db;
